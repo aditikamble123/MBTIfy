@@ -14,19 +14,38 @@ st.set_page_config(page_title="MBTIfy 🔮", page_icon="🧠", layout="centered"
 # Custom CSS
 st.markdown("""
     <style>
-    body {
-        background: linear-gradient(135deg, #ffb9b9, #ffddd2, #acc7ff, #8dc7ff);
-        font-family: 'Segoe UI', sans-serif;
-    }
-    .main {
-        background-color: #ffffffdd;
-        border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 4px 25px rgba(0,0,0,0.1);
-    }
-    h1, h2, h3 {
-        color: #6a0dad;
-    }
+        .main {
+            background-color: transparent;
+            padding: 30px;
+        }
+        h1, h2, h3, .question-container strong, label, .stRadio, .stRadio div, .stRadio span {
+            color: white !important;
+        }
+        .question-container {
+            padding: 10px 0;
+        }
+        .stRadio > div {
+            background-color: transparent !important;
+            padding: 0;
+            margin-bottom: 5px;
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .stRadio label {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            white-space: nowrap;
+        }
+        .stButton button {
+            background-color: #6a0dad;
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+        }
     </style>
 """, unsafe_allow_html=True)
 
