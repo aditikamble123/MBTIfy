@@ -12,12 +12,12 @@ import io
 st.set_page_config(page_title="MBTIfy 🔮", layout="centered")
 
 # Custom CSS
-st.markdown("""
-    <style>
-
-    body {
-        background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%) !important;
-        font-family: 'Segoe UI', sans-serif;
+st.markdown(
+    f"""
+    <div style='background-color: #FFE5EC; padding: 20px; border-radius: 15px; color: #6A0572; font-weight: bold; font-size: 24px; text-align: center;'>
+        Your MBTI Type: {personality_type} 🌟
+        <div style='font-size: 16px; font-weight: normal; margin-top: 10px;'>{description}</div>
+    </div>
     }
     .main {
         background-color: transparent;
