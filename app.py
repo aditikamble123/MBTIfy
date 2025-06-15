@@ -11,12 +11,11 @@ import io
 st.set_page_config(page_title="MBTIfy 🔮", layout="centered")
 
 # Custom CSS
-st.markdown("""
-<style>
-    .main {
-        background-color: transparent;
-        padding: 30px;
-    }
+st.markdown(f"""
+    <div style='background-color:#fff3f3; padding:20px; border-radius:15px; border-left: 5px solid #6a0dad;'>
+        <h2>Your MBTI Type: {mbti} 🌟</h2>
+        <p>{definition}</p>
+    </div>
     h1, h2, h3, .question-container strong, label, .stRadio, .stRadio div, .stRadio span {
         color: white !important;
     }
