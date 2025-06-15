@@ -51,7 +51,7 @@ st.markdown("""
     </style>""", unsafe_allow_html=True)
 
 # Load MBTI definitions
-mbti_df = pd.read_csv(r"C:\Users\ADITI\projects\MBTIfy\types.csv")[["Type", "Definition"]]
+mbti_df = pd.read_csv("types.csv")[["Type", "Definition"]]
 
 # Begin app container
 st.markdown("<div class='main'>", unsafe_allow_html=True)
