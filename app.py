@@ -3,58 +3,57 @@ import pandas as pd
 import sys
 import os
 sys.path.append(os.path.abspath('./utils'))
-from generate_pdf import create_pdf  # Ensure fpdf is added to requirements.txt
 
-import io
+from generate_pdf import create_pdf
 
 # Page Config
 st.set_page_config(page_title="MBTIfy 🔮", layout="centered")
 
-# Custom CSS
-st.markdown(f"""
-    <div style='background-color:#fff3f3; padding:20px; border-radius:15px; border-left: 5px solid #6a0dad;'>
-        <h2>Your MBTI Type: {mbti} 🌟</h2>
-        <p>{definition}</p>
-    </div>
-    h1, h2, h3, .question-container strong, label, .stRadio, .stRadio div, .stRadio span {
-        color: white !important;
-    }
-    .question-container {
-        padding: 10px 0;
-    }
-    .stRadio > div {
-        background-color: transparent !important;
-        padding: 0;
-        margin-bottom: 5px;
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-    .stRadio label {
-        background: none !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
-    .stButton button {
-        background-color: #6a0dad;
-        color: white;
-        border-radius: 8px;
-        padding: 10px 20px;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # Load MBTI definitions
 mbti_df = pd.read_csv("types.csv")[["Type", "Definition"]]
 
-# Begin app container
-st.markdown("<div class='main'>", unsafe_allow_html=True)
+# Main container styling
+st.markdown("""
+    <style>
+        .main {
+            background-color: transparent;
+            padding: 30px;
+        }
+        h1, h2, h3, .question-container strong, label, .stRadio, .stRadio div, .stRadio span {
+            color: white !important;
+        }
+        .question-container {
+            padding: 10px 0;
+        }
+        .stRadio > div {
+            background-color: transparent !important;
+            padding: 0;
+            margin-bottom: 5px;
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .stRadio label {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+        .stButton button {
+            background-color: #6a0dad;
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
+# App Title
+st.markdown("<div class='main'>", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align:center;'>MBTIfy 🔮</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center;'>Discover your true personality type with our 20-question MBTI quiz.</p>", unsafe_allow_html=True)
 
-# Define questions
+# Define 20 MBTI questions with traits
 questions = [
     {"question": "I prefer to recharge alone rather than with others.", "trait": ("I", "E")},
     {"question": "I get energy from social gatherings.", "trait": ("E", "I")},
@@ -80,6 +79,7 @@ questions = [
 
 scale = ["Strongly Disagree 🙅‍♀️", "Disagree 🙅", "Neutral 😐", "Slightly Agree 🙂", "Agree 🤓"]
 
+# Collect answers
 answers = []
 st.write("### Answer the following questions:")
 for i, q in enumerate(questions):
@@ -88,7 +88,7 @@ for i, q in enumerate(questions):
     answers.append(answer)
     st.markdown("<hr>", unsafe_allow_html=True)
 
-# Result Button
+# Button to generate result
 if st.button("✨ Get My Personality Type"):
     if None in answers:
         st.error("Please answer all questions before continuing.")
@@ -118,15 +118,17 @@ if st.button("✨ Get My Personality Type"):
 
         definition = mbti_df[mbti_df["Type"] == mbti]["Definition"].values[0]
 
+        # Show result card
         st.markdown(f"""
-            <div style='background-color:#fff3f3; padding:20px; border-radius:15px; border-left: 5px solid #6a0dad;'>
-                <h2>Your MBTI Type: {mbti} 🌟</h2>
-                <p>{definition}</p>
+            <div style='background-color: #FFE5EC; padding: 20px; border-radius: 15px; color: #6A0572; font-weight: bold; font-size: 24px; text-align: center;'>
+                Your MBTI Type: {mbti} 🌟
+                <div style='font-size: 16px; font-weight: normal; margin-top: 10px;'>{definition}</div>
             </div>
         """, unsafe_allow_html=True)
 
+        # PDF generation
         pdf_buffer = create_pdf(mbti, definition)
         st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti}_report.pdf", mime="application/pdf")
 
-# End of container
+# End
 st.markdown("</div>", unsafe_allow_html=True)
