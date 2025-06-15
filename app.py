@@ -1,6 +1,11 @@
 import streamlit as st
 import pandas as pd
-from utils.generate_pdf import create_pdf
+import sys
+import os
+sys.path.append(os.path.abspath('./utils'))
+
+from generate_pdf import create_pdf
+
 import io
 
 # Page Config
