@@ -118,10 +118,8 @@ st.markdown(f"""
         <div style='font-size: 16px; font-weight: normal; margin-top: 10px;'>{definition}</div>
     </div>
 """, unsafe_allow_html=True)
-
-
-        pdf_buffer = create_pdf(mbti, definition)
-        st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti}_report.pdf", mime="application/pdf")
+pdf_buffer = create_pdf(mbti, definition)
+st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti}_report.pdf", mime="application/pdf")
 
 # End of container
 st.markdown("</div>", unsafe_allow_html=True)
