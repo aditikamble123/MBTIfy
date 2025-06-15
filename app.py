@@ -86,10 +86,10 @@ questions = [
 answers = []
 st.write("### Answer the following questions:")
 for i, q in enumerate(questions):
-    st.markdown(f"**{i+1}. {q['question']}**")
-    answer = st.radio("", q["options"], index=None, horizontal=True, key=f"q{i}")
+    st.markdown(f"<div class='question-container'><strong>{i+1}. {q['question']}</strong></div>", unsafe_allow_html=True)
+    answer = st.selectbox("Choose your answer:", scale, index=None, key=f"q{i}")
     answers.append(answer)
-    st.markdown("---")
+    st.markdown("<hr>", unsafe_allow_html=True)
 
 # Compute MBTI
 if st.button("✨ Get My Personality Type"):
