@@ -3,8 +3,7 @@ import pandas as pd
 import sys
 import os
 sys.path.append(os.path.abspath('./utils'))
-
-from generate_pdf import create_pdf
+from generate_pdf import create_pdf  # Ensure fpdf is added to requirements.txt
 
 import io
 
@@ -12,12 +11,8 @@ import io
 st.set_page_config(page_title="MBTIfy 🔮", layout="centered")
 
 # Custom CSS
-st.markdown(
-    f"""
-    <div style='background-color: #FFE5EC; padding: 20px; border-radius: 15px; color: #6A0572; font-weight: bold; font-size: 24px; text-align: center;'>
-        Your MBTI Type: {personality_type} 🌟
-        <div style='font-size: 16px; font-weight: normal; margin-top: 10px;'>{description}</div>
-    </div>
+st.markdown("""
+<style>
     .main {
         background-color: transparent;
         padding: 30px;
@@ -27,6 +22,7 @@ st.markdown(
     }
     .question-container {
         padding: 10px 0;
+    }
     .stRadio > div {
         background-color: transparent !important;
         padding: 0;
@@ -47,7 +43,8 @@ st.markdown(
         border-radius: 8px;
         padding: 10px 20px;
     }
-    </style>""", unsafe_allow_html=True)
+</style>
+""", unsafe_allow_html=True)
 
 # Load MBTI definitions
 mbti_df = pd.read_csv("types.csv")[["Type", "Definition"]]
@@ -58,7 +55,7 @@ st.markdown("<div class='main'>", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align:center;'>MBTIfy 🔮</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center;'>Discover your true personality type with our 20-question MBTI quiz.</p>", unsafe_allow_html=True)
 
-# Define 20 MBTI questions with 5-point Likert scale
+# Define questions
 questions = [
     {"question": "I prefer to recharge alone rather than with others.", "trait": ("I", "E")},
     {"question": "I get energy from social gatherings.", "trait": ("E", "I")},
@@ -92,7 +89,7 @@ for i, q in enumerate(questions):
     answers.append(answer)
     st.markdown("<hr>", unsafe_allow_html=True)
 
-# Compute MBTI
+# Result Button
 if st.button("✨ Get My Personality Type"):
     if None in answers:
         st.error("Please answer all questions before continuing.")
