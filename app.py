@@ -18,7 +18,6 @@ st.markdown(
         Your MBTI Type: {personality_type} 🌟
         <div style='font-size: 16px; font-weight: normal; margin-top: 10px;'>{description}</div>
     </div>
-    }
     .main {
         background-color: transparent;
         padding: 30px;
