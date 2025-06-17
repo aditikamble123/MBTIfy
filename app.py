@@ -80,10 +80,10 @@ scale = ["Strongly Disagree 🙅‍♀️", "Disagree 🙅", "Neutral 😐", "Sl
 answers = []
 st.write("### Answer the following questions:")
 for i, q in enumerate(questions):
-    st.markdown(f"<div class='question-container'><strong>{i+1}. {q['question']}</strong></div>", unsafe_allow_html=True)
-    answer = st.radio("", scale, index=None, horizontal=True, key=f"q{i}")
+    st.markdown(f"<div style='color: white; font-weight: 600;'>{i+1}. {q['question']}</div>", unsafe_allow_html=True)
+    answer = st.radio("", q["options"], index=None, horizontal=True, key=f"q{i}")
     answers.append(answer)
-    st.markdown("<hr>", unsafe_allow_html=True)
+    st.markdown("<hr style='border-top: 1px solid #ffffff55;'>", unsafe_allow_html=True)
 
 # Calculate MBTI
 if st.button("✨ Get My Personality Type"):
