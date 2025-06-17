@@ -114,7 +114,7 @@ if st.button("✨ Get My Personality Type"):
 
         st.markdown(f"""
             <div style='background-color: #ffeaea; padding: 20px; border-radius: 15px;'>
-                <h3 style='color: purple;'>Your MBTI Type: {mbti_type} 🌟</h3>
+                <h3 style='color: purple;'>Your MBTI Type: {mbti_type} </h3>
                 <p style='color: black;'>{definition}</p>
             </div>
         """, unsafe_allow_html=True)
