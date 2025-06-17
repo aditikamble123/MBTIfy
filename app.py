@@ -147,6 +147,8 @@ for i, q in enumerate(questions):
 
 # Calculate MBTI
 if st.button("✨ Get My Personality Type"):
+    mbti_type = get_mbti_type(answers)  # <-- Make sure this line runs first
+    description = get_description(mbti_type)  # <-- Then this
     if None in answers:
         st.error("Please answer all questions before continuing.")
     else:
