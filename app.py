@@ -53,37 +53,93 @@ st.markdown("<p style='text-align:center;'>Discover your true personality type w
 
 # Questions
 questions = [
-    {"question": "I prefer to recharge alone rather than with others.", "trait": ("I", "E")},
-    {"question": "I get energy from social gatherings.", "trait": ("E", "I")},
-    {"question": "I focus on facts and details rather than ideas and concepts.", "trait": ("S", "N")},
-    {"question": "I enjoy interpreting meanings and imagining possibilities.", "trait": ("N", "S")},
-    {"question": "I make decisions with logic and consistency.", "trait": ("T", "F")},
-    {"question": "I consider others' feelings when making decisions.", "trait": ("F", "T")},
-    {"question": "I like to have things decided and organized.", "trait": ("J", "P")},
-    {"question": "I prefer to keep my options open.", "trait": ("P", "J")},
-    {"question": "I prefer texting over calling.", "trait": ("I", "E")},
-    {"question": "I often notice the little things around me.", "trait": ("S", "N")},
-    {"question": "I enjoy abstract theories more than hands-on experience.", "trait": ("N", "S")},
-    {"question": "I value empathy over efficiency.", "trait": ("F", "T")},
-    {"question": "I stick to schedules and plans.", "trait": ("J", "P")},
-    {"question": "I love spontaneous adventures.", "trait": ("P", "J")},
-    {"question": "I feel drained after long social events.", "trait": ("I", "E")},
-    {"question": "I trust experience more than inspiration.", "trait": ("S", "N")},
-    {"question": "I speak with logic, not emotion.", "trait": ("T", "F")},
-    {"question": "I like having a clear to-do list.", "trait": ("J", "P")},
-    {"question": "I tend to avoid conflict, even if it means compromising.", "trait": ("F", "T")},
-    {"question": "I often go with the flow rather than planning ahead.", "trait": ("P", "J")}
+    {"question": "I prefer to recharge alone rather than with others.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("I", "E")},
+    
+    {"question": "I get energy from social gatherings.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("E", "I")},
+    
+    {"question": "I focus on facts and details rather than ideas and concepts.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("S", "N")},
+    
+    {"question": "I enjoy interpreting meanings and imagining possibilities.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("N", "S")},
+    
+    {"question": "I make decisions with logic and consistency.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("T", "F")},
+    
+    {"question": "I consider others' feelings when making decisions.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("F", "T")},
+    
+    {"question": "I like to have things decided and organized.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("J", "P")},
+    
+    {"question": "I prefer to keep my options open.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("P", "J")},
+    
+    {"question": "I prefer texting over calling.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("I", "E")},
+    
+    {"question": "I often notice the little things around me.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("S", "N")},
+    
+    {"question": "I enjoy abstract theories more than hands-on experience.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("N", "S")},
+    
+    {"question": "I value empathy over efficiency.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("F", "T")},
+    
+    {"question": "I stick to schedules and plans.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("J", "P")},
+    
+    {"question": "I love spontaneous adventures.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("P", "J")},
+    
+    {"question": "I feel drained after long social events.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("I", "E")},
+    
+    {"question": "I trust experience more than inspiration.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("S", "N")},
+    
+    {"question": "I speak with logic, not emotion.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("T", "F")},
+    
+    {"question": "I like having a clear to-do list.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("J", "P")},
+    
+    {"question": "I tend to avoid conflict, even if it means compromising.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("F", "T")},
+    
+    {"question": "I often go with the flow rather than planning ahead.", 
+     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
+     "trait": ("P", "J")}
 ]
 
 scale = ["Strongly Disagree 🙅‍♀️", "Disagree 🙅", "Neutral 😐", "Slightly Agree 🙂", "Agree 🤓"]
 
 answers = []
 st.write("### Answer the following questions:")
-for i, q in enumerate(questions):
-    if "options" not in q:
-        st.error(f"❌ Question {i+1} is missing 'options'. Fix your questions list.")
-        st.stop()
 
+for i, q in enumerate(questions):
     st.markdown(f"<div style='color: white; font-weight: 600;'>{i+1}. {q['question']}</div>", unsafe_allow_html=True)
     answer = st.radio("", q["options"], index=None, horizontal=True, key=f"q{i}")
     answers.append(answer)
