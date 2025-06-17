@@ -147,8 +147,6 @@ for i, q in enumerate(questions):
 
 # Calculate MBTI
 if st.button("✨ Get My Personality Type"):
-    mbti_type = get_mbti_type(answers)  # <-- Make sure this line runs first
-    description = get_description(mbti_type)  # <-- Then this
     if None in answers:
         st.error("Please answer all questions before continuing.")
     else:
@@ -166,20 +164,22 @@ if st.button("✨ Get My Personality Type"):
             score[q["trait"][0]] += weight
             score[q["trait"][1]] -= weight
 
-        mbti = "".join([
+        mbti_type = "".join([
             "I" if score["I"] >= score["E"] else "E",
             "S" if score["S"] >= score["N"] else "N",
             "T" if score["T"] >= score["F"] else "F",
             "J" if score["J"] >= score["P"] else "P"
         ])
 
-        definition = mbti_df[mbti_df["Type"] == mbti]["Definition"].values[0]
-st.markdown(f"""
-    <div style='background-color: #ffeaea; padding: 20px; border-radius: 15px;'>
-        <h3 style='color: purple;'>Your MBTI Type: {mbti_type} 🌟</h3>
-        <p style='color: black;'>{description}</p>
-    </div>
-""", unsafe_allow_html=True)
-pdf_buffer = create_pdf(mbti, definition)
-st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti}_report.pdf", mime="application/pdf")
+        description = get_description(mbti_type)
+        definition = mbti_df[mbti_df["Type"] == mbti_type]["Definition"].values[0]
 
+        st.markdown(f"""
+            <div style='background-color: #ffeaea; padding: 20px; border-radius: 15px;'>
+                <h3 style='color: purple;'>Your MBTI Type: {mbti_type} 🌟</h3>
+                <p style='color: black;'>{description}</p>
+            </div>
+        """, unsafe_allow_html=True)
+
+        pdf_buffer = create_pdf(mbti_type, definition)
+        st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti_type}_report.pdf", mime="application/pdf")
