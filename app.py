@@ -171,15 +171,13 @@ if st.button("✨ Get My Personality Type"):
             "J" if score["J"] >= score["P"] else "P"
         ])
 
-        description = get_description(mbti_type)
-        definition = mbti_df[mbti_df["Type"] == mbti_type]["Definition"].values[0]
+definition = mbti_df[mbti_df["Type"] == mbti_type]["Definition"].values[0]
 
-        st.markdown(f"""
-            <div style='background-color: #ffeaea; padding: 20px; border-radius: 15px;'>
-                <h3 style='color: purple;'>Your MBTI Type: {mbti_type} 🌟</h3>
-                <p style='color: black;'>{description}</p>
-            </div>
-        """, unsafe_allow_html=True)
-
-        pdf_buffer = create_pdf(mbti_type, definition)
-        st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti_type}_report.pdf", mime="application/pdf")
+st.markdown(f"""
+    <div style='background-color: #ffeaea; padding: 20px; border-radius: 15px;'>
+        <h3 style='color: purple;'>Your MBTI Type: {mbti_type} 🌟</h3>
+        <p style='color: black;'>{definition}</p>
+    </div>
+""", unsafe_allow_html=True)
+pdf_buffer = create_pdf(mbti_type, definition)
+st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti_type}_report.pdf", mime="application/pdf")
