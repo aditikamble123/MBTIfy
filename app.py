@@ -80,6 +80,10 @@ scale = ["Strongly Disagree 🙅‍♀️", "Disagree 🙅", "Neutral 😐", "Sl
 answers = []
 st.write("### Answer the following questions:")
 for i, q in enumerate(questions):
+    if "options" not in q:
+        st.error(f"❌ Question {i+1} is missing 'options'. Fix your questions list.")
+        st.stop()
+
     st.markdown(f"<div style='color: white; font-weight: 600;'>{i+1}. {q['question']}</div>", unsafe_allow_html=True)
     answer = st.radio("", q["options"], index=None, horizontal=True, key=f"q{i}")
     answers.append(answer)
