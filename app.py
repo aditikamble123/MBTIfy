@@ -171,8 +171,6 @@ if st.button("✨ Get My Personality Type"):
             "J" if score["J"] >= score["P"] else "P"
         ])
 
-definition = mbti_df[mbti_df["Type"] == mbti_type]["Definition"].values[0]
-
 st.markdown(f"""
     <div style='background-color: #ffeaea; padding: 20px; border-radius: 15px;'>
         <h3 style='color: purple;'>Your MBTI Type: {mbti_type} 🌟</h3>
