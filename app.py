@@ -3,7 +3,7 @@ import pandas as pd
 import sys
 import os
 sys.path.append(os.path.abspath('./utils'))
-from generate_pdf import create_pdf
+from utils.generate_pdf import create_pdf
 
 # Page Config
 st.set_page_config(page_title="MBTIfy 🔮", page_icon="🧠", layout="centered")
@@ -53,88 +53,27 @@ st.markdown("<p style='text-align:center;'>Discover your true personality type w
 
 # Questions
 questions = [
-    {"question": "I prefer to recharge alone rather than with others.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("I", "E")},
-    
-    {"question": "I get energy from social gatherings.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("E", "I")},
-    
-    {"question": "I focus on facts and details rather than ideas and concepts.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("S", "N")},
-    
-    {"question": "I enjoy interpreting meanings and imagining possibilities.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("N", "S")},
-    
-    {"question": "I make decisions with logic and consistency.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("T", "F")},
-    
-    {"question": "I consider others' feelings when making decisions.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("F", "T")},
-    
-    {"question": "I like to have things decided and organized.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("J", "P")},
-    
-    {"question": "I prefer to keep my options open.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("P", "J")},
-    
-    {"question": "I prefer texting over calling.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("I", "E")},
-    
-    {"question": "I often notice the little things around me.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("S", "N")},
-    
-    {"question": "I enjoy abstract theories more than hands-on experience.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("N", "S")},
-    
-    {"question": "I value empathy over efficiency.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("F", "T")},
-    
-    {"question": "I stick to schedules and plans.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("J", "P")},
-    
-    {"question": "I love spontaneous adventures.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("P", "J")},
-    
-    {"question": "I feel drained after long social events.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("I", "E")},
-    
-    {"question": "I trust experience more than inspiration.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("S", "N")},
-    
-    {"question": "I speak with logic, not emotion.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("T", "F")},
-    
-    {"question": "I like having a clear to-do list.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("J", "P")},
-    
-    {"question": "I tend to avoid conflict, even if it means compromising.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("F", "T")},
-    
-    {"question": "I often go with the flow rather than planning ahead.", 
-     "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], 
-     "trait": ("P", "J")}
+    {"question": "I prefer to recharge alone rather than with others.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("I", "E")},
+    {"question": "I get energy from social gatherings.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("E", "I")},
+    {"question": "I focus on facts and details rather than ideas and concepts.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("S", "N")},
+    {"question": "I enjoy interpreting meanings and imagining possibilities.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("N", "S")},
+    {"question": "I make decisions with logic and consistency.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("T", "F")},
+    {"question": "I consider others' feelings when making decisions.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("F", "T")},
+    {"question": "I like to have things decided and organized.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("J", "P")},
+    {"question": "I prefer to keep my options open.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("P", "J")},
+    {"question": "I prefer texting over calling.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("I", "E")},
+    {"question": "I often notice the little things around me.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("S", "N")},
+    {"question": "I enjoy abstract theories more than hands-on experience.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("N", "S")},
+    {"question": "I value empathy over efficiency.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("F", "T")},
+    {"question": "I stick to schedules and plans.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("J", "P")},
+    {"question": "I love spontaneous adventures.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("P", "J")},
+    {"question": "I feel drained after long social events.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("I", "E")},
+    {"question": "I trust experience more than inspiration.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("S", "N")},
+    {"question": "I speak with logic, not emotion.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("T", "F")},
+    {"question": "I like having a clear to-do list.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("J", "P")},
+    {"question": "I tend to avoid conflict, even if it means compromising.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("F", "T")},
+    {"question": "I often go with the flow rather than planning ahead.", "options": ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"], "trait": ("P", "J")}
 ]
-
-scale = ["Strongly Disagree 🙅‍♀️", "Disagree 🙅", "Neutral 😐", "Slightly Agree 🙂", "Agree 🤓"]
 
 answers = []
 st.write("### Answer the following questions:")
@@ -145,7 +84,7 @@ for i, q in enumerate(questions):
     answers.append(answer)
     st.markdown("<hr style='border-top: 1px solid #ffffff55;'>", unsafe_allow_html=True)
 
-# Calculate MBTI
+# Button and scoring logic
 if st.button("✨ Get My Personality Type"):
     if None in answers:
         st.error("Please answer all questions before continuing.")
@@ -171,11 +110,14 @@ if st.button("✨ Get My Personality Type"):
             "J" if score["J"] >= score["P"] else "P"
         ])
 
-st.markdown(f"""
-    <div style='background-color: #ffeaea; padding: 20px; border-radius: 15px;'>
-        <h3 style='color: purple;'>Your MBTI Type: {mbti_type} 🌟</h3>
-        <p style='color: black;'>{definition}</p>
-    </div>
-""", unsafe_allow_html=True)
-pdf_buffer = create_pdf(mbti_type, definition)
-st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti_type}_report.pdf", mime="application/pdf")
+        definition = mbti_df[mbti_df["Type"] == mbti_type]["Definition"].values[0]
+
+        st.markdown(f"""
+            <div style='background-color: #ffeaea; padding: 20px; border-radius: 15px;'>
+                <h3 style='color: purple;'>Your MBTI Type: {mbti_type} 🌟</h3>
+                <p style='color: black;'>{definition}</p>
+            </div>
+        """, unsafe_allow_html=True)
+
+        pdf_buffer = create_pdf(mbti_type, definition)
+        st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti_type}_report.pdf", mime="application/pdf")
