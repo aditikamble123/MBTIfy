@@ -92,19 +92,17 @@ if st.button("✨ Get My Personality Type"):
     else:
         score = {"I": 0, "E": 0, "S": 0, "N": 0, "T": 0, "F": 0, "J": 0, "P": 0}
         weight_map = {
-            "Strongly Disagree 🙅‍♀️": -2,
-            "Disagree 🙅": -1,
-            "Neutral 😐": 0,
-            "Slightly Agree 🙂": 1,
-            "Agree 🤓": 2
+            "Strongly Agree": 2,
+            "Agree": 1,
+            "Neutral": 0,
+            "Disagree": -1,
+            "Strongly Disagree": -2
         }
 
         for ans, q in zip(answers, questions):
             weight = weight_map[ans]
-            if weight > 0:
-                score[q["trait"][0]] += weight
-            else:
-                score[q["trait"][1]] += abs(weight)
+            score[q["trait"][0]] += weight
+            score[q["trait"][1]] -= weight
 
         mbti = "".join([
             "I" if score["I"] >= score["E"] else "E",
@@ -115,17 +113,13 @@ if st.button("✨ Get My Personality Type"):
 
         definition = mbti_df[mbti_df["Type"] == mbti]["Definition"].values[0]
 
-        st.markdown(
-            f"""
-            <div style='background-color: #FFE5EC; padding: 20px; border-radius: 15px; color: #6A0572; font-weight: bold; font-size: 24px; text-align: center;'>
-                Your MBTI Type: {mbti} 🌟
-                <div style='font-size: 16px; font-weight: normal; margin-top: 10px;'>{definition}</div>
+        st.markdown(f"""
+            <div style='background-color:#fff3f3; padding:20px; border-radius:15px; border-left: 5px solid #6a0dad;'>
+                <h2>Your MBTI Type: {mbti} 🌟</h2>
+                <p>{definition}</p>
             </div>
-            """, unsafe_allow_html=True
-        )
+        """, unsafe_allow_html=True)
 
         pdf_buffer = create_pdf(mbti, definition)
-        st.download_button("📄 Download Your Report", data=pdf_buffer, file_name=f"{mbti}_report.pdf", mime="application/pdf")
+        st.download_button("Download Your Report", data=pdf_buffer, file_name=f"{mbti}_report.pdf", mime="application/pdf")
 
-# End container
-st.markdown("</div>", unsafe_allow_html=True)
